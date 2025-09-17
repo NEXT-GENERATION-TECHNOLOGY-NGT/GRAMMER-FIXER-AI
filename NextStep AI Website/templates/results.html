@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextStepAI - RESULTS</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+</head>
+<body>
+  <!-- Header  -->
+  <header>
+    <div class="header-container">
+      <div class="logo">NextStepAI</div>
+      <nav>
+        <a href="home.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT US</a>
+        <a href="results.html" id="resultsNav" style="display:none;">RESULTS</a>
+      </nav>
+      <div class="auth" id="authButtons">
+        <button onclick="openModal('login')">Login</button>
+        <button onclick="openModal('signup')">Sign Up</button>
+      </div>
+      <div id="userName" style="display:none; font-weight:bold; color: white;">
+        <span id="displayName"></span>
+        <button id="logoutBtn" onclick="handleLogout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" style="background:url('Media/results-hero.jpg') center/cover no-repeat;">
+    <h1>Your Matric Results</h1>
+    <p>See your marks and discover where they can take you.</p>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results-body">
+    <div id="resultsPlaceholder">
+      <h2>Input your matric results first</h2>
+      <p>Click below to go back and complete the form.</p>
+      <button onclick="window.location.href='home.html#formSection'">Go Back</button>
+    </div>
+
+    <div id="resultsTableSection" style="display:none;">
+      <h2>Your Subjects</h2>
+      <table id="resultsTable">
+        <tr>
+          <th>Subject</th>
+          <th>Marks (%)</th>
+          <th>APS Level</th>
+        </tr>
+        <!-- Filled by JS -->
+      </table>
+    </div>
+  </section>
+
+  <!-- School Suggestions Section -->
+  <section class="suggestions" style="margin-top:50px;">
+    <h2>School & Course Suggestions</h2>
+    <div class="card-container" id="suggestionCards">
+      <!-- Block-like cards will be injected here later -->
+    </div>
+  </section>
+
+  <!-- Footer (same as home) -->
+  <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <h2>NextStepAI</h2>
+                    <p>Revolutionizing education discovery through smart AI technology that connects passionate learners with their ideal academic destinations</p>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <nav>
+                        <a href="home.html">HOME</a>
+                        <a href="about.html">ABOUT</a>
+                        <a href="contact.html">CONTACT US</a>
+                        <a href="results.html" id="resultsNav" style="display:none;">RESULTS</a>
+                    </nav>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p>Email: thatonhlapo@nextstep.com</p>
+                    <p>Tel: +27 71 333 2279</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 NextStepAI. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <section class="about" id="aboutSection">
+        <div class="about-container">
+        <h2>Why NextStepAI?</h2>
+        <p>
+            At NextStepAI, we understand that choosing the right course and institution can be overwhelming. 
+            That’s why we leverage the power of AI to provide personalized recommendations based on your unique academic profile.
+        </p>
+</html>
