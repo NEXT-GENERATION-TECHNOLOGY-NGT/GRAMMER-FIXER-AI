@@ -354,5 +354,7 @@ async function search (userAPS, userSubjects) {
     considerDiv.innerHTML = "<h2>⚠️ Consider These Options</h2>";
     borderline.forEach(item => considerDiv.appendChild(renderCard(item, true)));
   }
+
+showResults(aps, subjects); 
 }
 
