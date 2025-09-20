@@ -319,3 +319,40 @@ function validateSubjects() {
   alert("Subjects validated. Proceeding with search...");
   // 👉 place search logic here
 }
+
+async function search (userAPS, userSubjects) {
+  const faculties = await loadFaculties(); // get data from Website A
+  const qualifiedDiv = document.getElementById("qualified");
+  const considerDiv = document.getElementById("consider");
+
+  qualifiedDiv.innerHTML = "";
+  considerDiv.innerHTML = "";
+
+  const qualified = [];
+  const borderline = [];
+
+  faculties.forEach(faculty => {
+    faculty.courses.forEach(course => {
+      const hasSubject = course.requiredSubjects.some(sub =>
+        userSubjects.includes(sub.toLowerCase())
+      );
+
+      if (hasSubject) {
+        if (userAPS >= course.aps) qualified.push(course);
+        else if (userAPS >= course.aps - 2) borderline.push(course);
+      }
+    });
+  });
+
+  // Render cards like before
+  if (qualified.length > 0) {
+    qualifiedDiv.innerHTML = "<h2>✅ Qualified Courses</h2>";
+    qualified.forEach(item => qualifiedDiv.appendChild(renderCard(item)));
+  }
+
+  if (borderline.length > 0) {
+    considerDiv.innerHTML = "<h2>⚠️ Consider These Options</h2>";
+    borderline.forEach(item => considerDiv.appendChild(renderCard(item, true)));
+  }
+}
+
