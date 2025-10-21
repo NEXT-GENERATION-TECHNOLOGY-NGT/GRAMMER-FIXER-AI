@@ -29,7 +29,7 @@ class YourGrammarCorrector:
                 except Exception as e:
                     continue  
             
-            print(f"📚 Loaded {len(self.corrections)} correction rules from YOUR dataset")
+            print(f" Loaded {len(self.corrections)} correction rules from YOUR dataset")
             
         except Exception as e:
             print(f" Error loading YOUR dataset: {e}")
@@ -59,13 +59,13 @@ class YourGrammarCorrector:
             if any(prep in wrong for prep in [' in ', ' on ', ' at ', ' to ', ' for ']):
                 preposition_errors += 1
         
-        print(f"📊 Verb tense errors: {verb_errors}")
-        print(f"📊 Subject-verb agreement: {subject_verb_errors}") 
-        print(f"📊 Article usage: {article_errors}")
-        print(f"📊 Preposition errors: {preposition_errors}")
+        print(f" Verb tense errors: {verb_errors}")
+        print(f" Subject-verb agreement: {subject_verb_errors}") 
+        print(f" Article usage: {article_errors}")
+        print(f" Preposition errors: {preposition_errors}")
         
         # Show some examples from YOUR dataset
-        print(f"\n📖 Sample corrections from YOUR dataset:")
+        print(f"\n Sample corrections from YOUR dataset:")
         sample_count = 0
         for wrong, right in list(self.corrections.items())[:5]:
             print(f"   '{wrong}' → '{right}'")
@@ -79,7 +79,7 @@ class YourGrammarCorrector:
         original = sentence
         sentence_lower = sentence.lower().strip()
         
-        print(f"\n🔎 Checking: '{sentence}'")
+        print(f"\n Checking: '{sentence}'")
         print(f"   Looking in {len(self.corrections)} dataset rules...")
         
         # 1. Exact match in your dataset
@@ -116,7 +116,7 @@ class YourGrammarCorrector:
         similar = []
         
         for wrong, right in self.corrections.items():
-            # Check if this correction might be relevant
+            # Checks if this correction might be relevant
             words_in_common = set(sentence_lower.split()) & set(wrong.split())
             if len(words_in_common) >= 2:  # At least 2 words in common
                 similar.append((wrong, right, len(words_in_common)))
@@ -126,7 +126,7 @@ class YourGrammarCorrector:
         return similar[:3]  # Return top 3
 
 def main():
-    print("🚀 YOUR DATASET GRAMMAR CORRECTOR")
+    print(" YOUR DATASET GRAMMAR CORRECTOR")
     print("=" * 60)
     
     # Initialize using ONLY your dataset
@@ -136,9 +136,9 @@ def main():
         print(" Cannot continue - no dataset loaded")
         return
     
-    # Test specific cases including "she is want"
+    # Test's the specific cases including "she is want"
     test_cases = [
-        "she is want",  # Your example
+        "she is want",  # example
         "I goes to the store",
         "They was playing", 
         "She have completed",
@@ -146,7 +146,7 @@ def main():
         "in friday i will go"
     ]
     
-    print("\n🧪 TESTING WITH YOUR DATASET ONLY:")
+    print("\n TESTING WITH YOUR DATASET ONLY:")
     print("=" * 50)
     
     for sentence in test_cases:
@@ -161,25 +161,25 @@ def main():
             # Show similar patterns from your dataset
             similar = corrector.search_similar_in_dataset(sentence)
             if similar:
-                print(f"   💡 Similar patterns in your dataset:")
+                print(f"    Similar patterns in your dataset:")
                 for wrong, right, score in similar:
                     print(f"      - '{wrong}' → '{right}'")
     
     # Interactive mode focused on your dataset
     print("\n" + "="*60)
-    print("💬 INTERACTIVE MODE - Using YOUR DATASET")
+    print(" INTERACTIVE MODE - Using YOUR DATASET")
     print("Type 'quit' to exit, 'search' to find patterns")
     print("="*60)
     
     while True:
         try:
-            user_input = input("\n📝 Enter sentence: ").strip()
+            user_input = input("\n Enter sentence: ").strip()
             
             if user_input.lower() in ['quit', 'exit', 'q']:
                 break
             
             if user_input.lower() == 'search':
-                # Let user search for patterns
+                # let user search for patterns
                 search_term = input("Enter word or phrase to search in dataset: ").lower()
                 matches = []
                 for wrong, right in corrector.corrections.items():
@@ -187,7 +187,7 @@ def main():
                         matches.append((wrong, right))
                 
                 if matches:
-                    print(f"\n🔍 Found {len(matches)} matches for '{search_term}':")
+                    print(f"\n Found {len(matches)} matches for '{search_term}':")
                     for wrong, right in matches[:10]:  # Show first 10
                         print(f"   '{wrong}' → '{right}'")
                 else:
@@ -208,18 +208,19 @@ def main():
                 # Show why no match was found
                 similar = corrector.search_similar_in_dataset(user_input)
                 if similar:
-                    print(f"💡 Close matches in your dataset:")
+                    print(f" Close matches in your dataset:")
                     for wrong, right, score in similar:
                         print(f"   '{wrong}' → '{right}'")
                 else:
-                    print(f"💡 No similar patterns found in your dataset")
+                    print(f" No similar patterns found in your dataset")
                     print(f"   This error might not be covered in your dataset")
                     
         except KeyboardInterrupt:
-            print("\n👋 Goodbye!")
+            print("\n Goodbye!")
             break
         except Exception as e:
             print(f" Error: {e}")
 
 if __name__ == "__main__":
+
     main()
